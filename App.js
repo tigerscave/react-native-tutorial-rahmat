@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Select, Option } from 'react-native-chooser'; 
+import { createBottomTabNavigator } from 'react-navigation'; 
+import HomeScreen from './src/home'
 
 const data = [
   {
@@ -20,8 +22,7 @@ const data = [
   }, 
 ]
 
-
-export default class App extends React.Component {
+class SelectUser extends Component {
   constructor(props) {
     super(props); 
     this.state = {
@@ -34,6 +35,8 @@ export default class App extends React.Component {
     this.setState({
       selectUser: selectUserName, 
     })
+
+
   }
       
   }
@@ -60,6 +63,22 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default class App extends Component {
+  render() {
+    return <AppBottonNavigation />
+  }
+}
+
+const AppBottonNavigation = createBottomTabNavigator({
+  Home: {
+    screen: HomeScreen,
+  }, 
+  SelectUser: {
+    screen: SelectUser, 
+  }, 
+})
+
 
 const styles = StyleSheet.create({
   container: {
